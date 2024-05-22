@@ -1,6 +1,3 @@
-# R-SCRIPT OF CODE IN CLIENT DELIVAREABLE
-# PROJECT DESCRIPTION
-
 # USEFUL PACKAGES
 library(tidyverse)
 library(causact)
@@ -84,7 +81,7 @@ graph1 = carsDF %>% ggplot(aes(x = observation, y = carsFixed, fill=Boss_Presenc
 
 graph1
 
-ggsave("FD_Graph1_PavanKumarNakka_ShriyaRacharla.pdf",height=10, width=15)
+ggsave("FD_Graph1.pdf",height=10, width=15)
 
 #########################################################################################################################################
 #CODE FOR SECOND GRAPH
@@ -146,42 +143,4 @@ mainDF%>%
   geom_text(aes(x = 18, label = paste0("Expected Addtional Revenue = " , scales::dollar(minexpense), " to ", scales::dollar(maxexpense))), vjust = 0.5, hjust = 0, size = 5, color = "red") +
   theme_minimal(17)
 
-ggsave("FD_Graph2_PavanKumarNakka_ShriyaRacharla.pdf",height=12, width=20)
-
-#########################################################################################################################################
-#TRY FOR SECOND GRAPH
-#########################################################################################################################################
-draw = drawsDF %>% 
-  slice_sample(n=1) %>% # get a random draw
-  select(alpha_shop_1.0,beta_shop_1.0)
-
-draw = draw %>%
-  mutate(rate_bosspresent = exp(alpha_shop_1.0 + beta_shop_1.0 * 1)) %>% mutate(rate_ShopLevel_bossabsent = exp(alpha_shop_1.0))
-
-postDF = drawsDF %>%
-  select(alpha_shop_1.0,beta_shop_1.0,alpha_shop_2.0,beta_shop_2.0,alpha_shop_3.0,beta_shop_3.0,alpha_shop_4.0,beta_shop_4.0,alpha_shop_5.0,beta_shop_5.0) %>%
-  mutate(rate_bosspresent_1.0 = exp(alpha_shop_1.0 + beta_shop_1.0 * 1)) %>%
-  mutate(rate_bossabsent_1.0 = exp(alpha_shop_1.0)) %>%
-  mutate(shop_1 = rate_bosspresent_1.0 - rate_bossabsent_1.0) %>% 
-  mutate(rate_bosspresent_2.0 = exp(alpha_shop_2.0 + beta_shop_2.0 * 1)) %>%
-  mutate(rate_bossabsent_2.0 = exp(alpha_shop_2.0)) %>%
-  mutate(shop_2 = rate_bosspresent_2.0 - rate_bossabsent_2.0) %>% 
-  mutate(rate_bosspresent_3.0 = exp(alpha_shop_3.0 + beta_shop_3.0 * 1)) %>%
-  mutate(rate_bossabsent_3.0 = exp(alpha_shop_3.0)) %>%
-  mutate(shop_3 = rate_bosspresent_3.0 - rate_bossabsent_3.0) %>% 
-  mutate(rate_bosspresent_4.0 = exp(alpha_shop_4.0 + beta_shop_4.0 * 1)) %>%
-  mutate(rate_bossabsent_4.0 = exp(alpha_shop_4.0)) %>%
-  mutate(shop_4 = rate_bosspresent_4.0 - rate_bossabsent_4.0) %>% 
-  mutate(rate_bosspresent_5.0 = exp(alpha_shop_5.0 + beta_shop_5.0 * 1)) %>%
-  mutate(rate_bossabsent_5.0 = exp(alpha_shop_5.0)) %>%
-  mutate(shop_5 = rate_bosspresent_5.0 - rate_bossabsent_5.0)                                                                                     
-
-postDF1 = postDF %>% select(shop_1,shop_2, shop_3, shop_4, shop_5) 
-
-postDF %>% 
-  ggplot(aes(x = shop_1)) + 
-  geom_density(fill = "orange", alpha = 0.5)
-
-postDF1 %>% dagp_plot()
-
-summary(postDF$shop_1)
+ggsave("FD_Graph2.pdf",height=12, width=20)
