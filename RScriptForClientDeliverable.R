@@ -3,7 +3,7 @@ library(tidyverse)
 library(causact)
 
 # LOAD DATA
-carsDF = readr::read_csv("/Users/pavankumarn/Documents/Sem_2/BUAD621/WorkingDirectory/Project/carsFixed.csv")
+carsDF = readr::read_csv("/Users/pavankumarn/Documents/WorkingDirectory/carsFixed.csv")
 # VIEW QUICK SUMMARY OF DATA
 carsDF %>%
   group_by(shopID) %>%
