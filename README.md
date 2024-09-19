@@ -7,3 +7,7 @@ carsDF has 10 weeks’ worth data:
 <li>shopID: A unique shop identifier for each of the five shops.</li>
 <li>boss: A binary variable equal to one when the boss worked at the given store on that day. Note: The boss did not visit each shop equally.</li>
 <li>carsFixed: This represents the number of cars that the shop fixed on that given workday.</li>
+
+
+![graphical_model.png](https://github.com/pavanngsv/Midas-Automotive/blob/main/graphical_model.png)
+
